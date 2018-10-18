@@ -1,7 +1,7 @@
 {
-  "name": "Miniblog.Core",
-  "short_name": "Miniblog.Core",
-  "description": "A short description of the blog.",
+  "name": "Tech Writings",
+  "short_name": "Tech Writings",
+  "description": "A blog about modern development and cloud technologies.",
   "icons": [
     {
       "src": "/img/icon192x192.png",
