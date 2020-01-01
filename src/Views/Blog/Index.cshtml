@@ -2,6 +2,10 @@
 @inject IOptionsSnapshot<BlogSettings> settings
 @{
     int currentPage = int.Parse(ViewContext.RouteData.Values["page"] as string ?? "0");
+    //int pageCount = Model.ToList().Count;
+
+    // fixed pagination issue. Model.Count() would always be equal to the number of posts per page not the actual page count.
+    int pageCount = int.Parse(ViewData["TotalPostCount"].ToString()) / 2; 
 }
 
 @foreach (var post in Model)
@@ -10,7 +14,7 @@
 }
 
 <nav class="pagination container" aria-label="Pagination">
-    @if (Model.Any())
+    @if (Model.Any() && currentPage < pageCount)
     {
         <a rel="prev" href="@ViewData["prev"]" title="Older posts">&laquo; Older</a>
     }
@@ -21,7 +25,7 @@
     <br /><br />
 
     @section Head {
-        @if (Model.Any())
+        @if (Model.Any() && currentPage < pageCount)
         {
             <link rel="prev" href="@ViewData["prev"]" />
         }
